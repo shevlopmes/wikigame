@@ -47,3 +47,7 @@ fun extractReferences(html: Document?): List<String> {
         .filter { link -> forbiddenTemplates.all { forbiddenTemplate -> !link.contains(forbiddenTemplate) } }
         .distinct()
 }
+
+fun getLinks(url: String): List<String> {
+    return extractReferences(getHtmlDocument(url))
+}

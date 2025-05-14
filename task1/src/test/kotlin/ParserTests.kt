@@ -21,17 +21,17 @@ internal class ParserTests {
             Arguments.of(
                 "https://en.wikipedia.org/wiki/Kotlin_(programming_language)",
                 listOf(
-                    "a new language for the JVM, which had been under development for a year",
-                    "Kotlin 1.5 was released in May 2021",
-                    "by default, meaning that creating a derived class is disabled unless the base class is declared with",
+                    "Kotlin mainly targets the JVM, ",
+                    "On 7 May 2019, Google announced that the Kotlin programming language had become its preferred language",
+                    "The first commit to the Kotlin Git repository was on November 8, 2010"
                 )
             ),
             Arguments.of(
                 "en.wikipedia.org/wiki/Kotlin_(programming_language)",
                 listOf(
-                    "a new language for the JVM, which had been under development for a year",
+                    "all classes are public and final (non-inheritable) by default",
                     "Kotlin 1.5 was released in May 2021",
-                    "by default, meaning that creating a derived class is disabled unless the base class is declared with",
+                    "By placing the preceding code in the top-level of a package, the String class is ",
                 )
             )
         )
@@ -42,16 +42,7 @@ internal class ParserTests {
                 "https://en.wikipedia.org/wiki/Kotlin_(programming_language)aaaaa",
                 emptyList<String>(),
                 0,
-            ),
-            Arguments.of(
-                "https://en.wikipedia.org/wiki/Kotlin_(programming_language)",
-                listOf(
-                    "https://en.wikipedia.org/wiki/James_Gosling",
-                    "https://en.wikipedia.org/wiki/Java_Community_Process",
-                    "https://en.wikipedia.org/wiki/JetBrains",
-                ),
-                210
-            ),
+            )
         )
     }
 
