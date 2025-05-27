@@ -38,7 +38,7 @@ jobs:
         with:
           arguments: diktatCheckAll --stacktrace
 
-  tests:
+  test:
     needs: diktatCheckAll
     runs-on: ubuntu-latest
 
