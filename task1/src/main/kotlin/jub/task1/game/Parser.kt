@@ -24,9 +24,10 @@ private val forbiddenTemplates = listOf(
 )
 
 @Suppress("TooGenericExceptionCaught", "SwallowedException")
-fun getHtmlDocument(url: String): Document? {
+fun getHtmlDocument(url: String?): Document? {
     // You can use Jsoup.connect to get a document
     // See - https://jsoup.org/cookbook/input/load-document-from-url
+    if (url == null || url.isEmpty()) return null
     return try {
         val checkedUrl = if (!url.contains("https://")) "https://$url" else url
         Jsoup.connect(checkedUrl).get()
@@ -46,4 +47,8 @@ fun extractReferences(html: Document?): List<String> {
         .map { host + it.attr("href") }
         .filter { link -> forbiddenTemplates.all { forbiddenTemplate -> !link.contains(forbiddenTemplate) } }
         .distinct()
+}
+
+fun getLinks(url: String?): List<String> {
+    return extractReferences(getHtmlDocument(url))
 }
