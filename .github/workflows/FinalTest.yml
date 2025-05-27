@@ -20,7 +20,7 @@ jobs:
         with:
           arguments: detekt --stacktrace
 
-  diktat:
+  diktatCheckAll:
     needs: detekt
     runs-on: ubuntu-latest
 
@@ -36,10 +36,10 @@ jobs:
         uses: gradle/wrapper-validation-action@v3
       - uses: gradle/gradle-build-action@v3
         with:
-          arguments: diktat --stacktrace
+          arguments: diktatCheckAll --stacktrace
 
   tests:
-    needs: diktat
+    needs: diktatCheckAll
     runs-on: ubuntu-latest
 
     steps:
