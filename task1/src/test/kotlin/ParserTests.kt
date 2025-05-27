@@ -29,8 +29,8 @@ internal class ParserTests {
             Arguments.of(
                 "en.wikipedia.org/wiki/Kotlin_(programming_language)",
                 listOf(
-                    "all classes are public and final (non-inheritable) by default",
-                    "Kotlin 1.5 was released in May 2021",
+                    "The first commit to the Kotlin Git repository was on November 8, 2010.",
+                    "An extension function will appear exactly like a function of the class and will be shown in code completion inspection of class functions. ",
                     "By placing the preceding code in the top-level of a package, the String class is ",
                 )
             )
@@ -56,7 +56,7 @@ internal class ParserTests {
                 "For the valid url: $url the parser must return not null! User can omit https://, but you need to handle this case!"
             )
             output.forEach {
-                assertTrue(it in html.toString(), "For the valid url: $url the text $output must be in the output")
+                assertTrue(it in html.toString(), "For the valid url: $url the text $it must be in the output")
             }
         } ?: assertNull(html, "For the invalid url: $url the parser must return null!")
     }
