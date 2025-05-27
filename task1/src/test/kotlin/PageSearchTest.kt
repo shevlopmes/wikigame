@@ -11,6 +11,9 @@ class PageSearchTest {
     @MethodSource("searchTestData")
     fun searchTestSingleThread(expectedPathSize: Int, startPage: String, expectedPath: List<String>) {
         val searchResult = PageSearch(KOTLIN_PAGE).search(startPage, 2, 1)
+        println("Test: searchTestSingleThread($startPage)")
+        println("Expected path: $expectedPath")
+        println("Actual path: ${searchResult.path}")
         assertEquals(expectedPathSize, searchResult.steps, "From $startPage to $KOTLIN_PAGE $expectedPathSize steps")
         expectedPath.zip(searchResult.path).forEachIndexed { index, (expected, actual) ->
             assertEquals(

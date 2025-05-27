@@ -1,7 +1,6 @@
 package jub.task1.game
 
 import com.github.ajalt.clikt.core.CliktCommand
-import com.github.ajalt.clikt.parameters.options.default
 import com.github.ajalt.clikt.parameters.options.help
 import com.github.ajalt.clikt.parameters.options.option
 import com.github.ajalt.clikt.parameters.options.prompt
@@ -12,7 +11,7 @@ import org.jsoup.Jsoup
 import java.io.IOException
 
 class WikiGameApp : CliktCommand() {
-    private val finalPage: String by option().default(KOTLIN_PAGE).help("The final page url")
+    private val optionalFinalPage: String by option().prompt("Url of the final page").help("The final page url")
     private val optionalStartPage: String by option().prompt("Url of the start page").help("The person to greet")
     private val threadsCount: Int by option().int().prompt("Threads count").help("Count of threads")
     private val maxDepth: Int by option().int().prompt("Max depth").help("Max search depth")
@@ -23,12 +22,15 @@ class WikiGameApp : CliktCommand() {
             define the start page, thread count and maximum search depth - and this program will try to find final 
             page starting from the start page!
             
-            If you don't want to pass start page, you may gust leave it blank.
+            If you don't want to pass start page, you may just leave it blank.
+            If you don't want to pass final page, you may just leave it blank 
+            (and the final page will be a page about Kotlin language).
         """.trimIndent())
     }
 
     override fun run() {
         val startPage = if (optionalStartPage == "") getRandomPage() else optionalStartPage
+        val finalPage = if (optionalFinalPage == "") KOTLIN_PAGE else optionalFinalPage
         println("Started from the page $startPage\n")
         val result = PageSearch(finalPage).search(startPage, maxDepth, threadsCount)
         if (result.steps == NOT_FOUND) printFailure()
